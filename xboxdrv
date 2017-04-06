@@ -1,0 +1,21 @@
+[xboxdrv]
+silent = true
+deadzone = 4000
+
+[xboxdrv-daemon]
+dbus = disabled
+
+[buttonmap]
+1 = 3
+3 = 1
+2 = 4
+4 = 2
+rt = start
+lt = back
+start = rt
+back = lt
+
+[ui-buttonmap]
+guide = KEY_LEFTSHIFT+KEY_TAB
+rt = KEY_END
+lt = KEY_G
