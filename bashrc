@@ -10,6 +10,9 @@ ANDROID_NDK=${HOME}/bin/android-ndk-r9c
 ANDROID_SWT=/usr/share/java
 ANDROID_HOME=${ANDROID_SDK}
 
+VISUAL=vim
+EDITOR=$VISUAL
+
 PATH=$PATH:~/bin:~/bin/games:~/bin/bash:~/.cabal/bin:$ANDROID_SDK/tools:$ANDROID_NDK
 
 alias diff='diff --color=auto'
