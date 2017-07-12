@@ -4,9 +4,9 @@ export PATH=$PATH:~/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin
 
 export VISUAL=gvim
 export EDITOR=vim
-export BROWSER=firefox
+export BROWSER=firefox-nightly
 export PAGER=less
-export TERMINAL="st -t st -e tmux"
+export TERMINAL="st -t st"
 
 export SUDO_ASKPASS=$HOME/bin/askpass
 
