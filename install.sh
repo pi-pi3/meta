@@ -13,3 +13,7 @@ cp profile ~/.profile
 
 mkdir -p ~/.config/i3
 cp config/i3/config ~/.config/i3/config
+
+mkdir -p ~/bin
+cp bin/* ~/bin/
+cp usr/share/* /usr/share/
