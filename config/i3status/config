@@ -1,0 +1,61 @@
+
+general {
+    #output_format = "dzen2"
+    colors = true
+    interval = 1
+}
+
+#order += "i3-notify"
+order += "disk /"
+#order += "run_watch DHCP"
+order += "ethernet enp0s31f6"
+#order += "cpu_temperature 0"
+order += "cpu_usage"
+#order += "load"
+order += "volume_status"
+order += "tztime local"
+
+#i3-notify {
+#}
+
+volume_status {
+    thresholds = [
+        (0, "#FF0000"),
+        (20, "degraded"),
+        (50, "bad"),
+    ]
+    on_click 1 = "exec pavucontrol"
+}
+
+ethernet eth0 {
+    # if you use %speed, i3status requires the cap_net_admin capability
+    format_up = "E: %ip (%speed)"
+    format_down = "E: down"
+}
+
+#run_watch DHCP {
+#    pidfile = "/var/run/dhcpcd-enp0s31f6.pid"
+#}
+
+tztime local {
+    format = "%Y-%m-%d %H:%M:%S"
+    timezone = "Europe/Berlin"
+}
+
+#load {
+#    format = "L: %1min"
+#}
+
+cpu_usage {
+    format = "U: %usage"
+    on_click 1 = "exec gtop"
+}
+
+#cpu_temperature 0 {
+#    format = "T: %degrees °C"
+#    path = "/sys/devices/platform/coretemp.0/temp1_input"
+#}
+
+disk "/" {
+    format = "/dev/sda3: %free/%total"
+}

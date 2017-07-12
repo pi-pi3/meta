@@ -12,7 +12,9 @@ cp gitconfig ~/.gitconfig
 cp profile ~/.profile
 
 mkdir -p ~/.config/i3
+mkdir -p ~/.config/i3status
 cp config/i3/config ~/.config/i3/config
+cp config/i3status/config ~/.config/i3status/config
 
 mkdir -p ~/bin
 cp bin/* ~/bin/
