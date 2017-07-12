@@ -10,3 +10,4 @@ cp ~/.xprofile xprofile
 cp ~/.Xmodmap Xmodmap
 cp ~/.gitconfig gitconfig
 cp ~/.profile profile
+cp ~/.config/i3/config config/i3/config
