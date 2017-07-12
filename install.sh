@@ -1,8 +1,12 @@
 #!/bin/sh
 
 cp vimrc ~/.vimrc
-cp bashrc ~/.bashrc
+cp zshrc ~/.zshrc
 cp clang-format ~/.clang-format
-
-# requires root
-#cp xboxdrv /etc/default/xboxdrv
+cp zprofile ~/.zprofile
+cp xinitrc ~/.xinitrc
+cp xserverrc ~/.xserverrc
+cp xprofile ~/.xprofile
+cp Xmodmap ~/.Xmodmap
+cp gitconfig ~/.gitconfig
+cp profile ~/.profile

@@ -43,6 +43,7 @@ nnoremap <Leader><CR> A<CR>*<ESC>
 call plug#begin('~/.vim/plugged')
 
 Plug 'rust-lang/rust.vim'
+Plug 'vim-gdscript'
 
 call plug#end()
 
