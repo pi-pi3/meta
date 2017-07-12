@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+if [[ -n $DISPLAY ]]; then
+    file=$(mktemp)
+    passfile=$(mktemp)
+    echo "i3-msg 'floating enable' > /dev/null" > $file
+    tail -n +15 $0 | head -n 3 >> $file
+    echo 'print $pass >> ' $passfile >> $file
+    st -t 'askpass' -g=24x4 -e zsh $file
+    rm -f $file
+    cat $passfile
+    exit
+fi
+
+print -nP "%F{red}Password:%f " >&2
+read -rs pass
+print -n "\n" >&2
+print $pass

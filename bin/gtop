@@ -1,0 +1,6 @@
+#!/usr/bin/sh
+if [ "$1" = '-h' -o "$1" = '--help' ]; then
+    st -t htop -e less /usr/share/gtop-help
+else
+    st -t htop -e htop $@
+fi

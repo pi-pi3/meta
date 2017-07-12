@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ "$1" = '-h' -o "$1" = '--help' ]; then
+    st -t gvim -e less /usr/share/gvim-help
+else
+    st -t gvim -e vim $@
+fi
