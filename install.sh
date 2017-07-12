@@ -1,21 +1,21 @@
 #!/bin/sh
 
-cp vimrc ~/.vimrc
-cp zshrc ~/.zshrc
-cp clang-format ~/.clang-format
-cp zprofile ~/.zprofile
-cp xinitrc ~/.xinitrc
-cp xserverrc ~/.xserverrc
-cp xprofile ~/.xprofile
-cp Xmodmap ~/.Xmodmap
-cp gitconfig ~/.gitconfig
-cp profile ~/.profile
+cp -u vimrc ~/.vimrc
+cp -u zshrc ~/.zshrc
+cp -u clang-format ~/.clang-format
+cp -u zprofile ~/.zprofile
+cp -u xinitrc ~/.xinitrc
+cp -u xserverrc ~/.xserverrc
+cp -u xprofile ~/.xprofile
+cp -u Xmodmap ~/.Xmodmap
+cp -u gitconfig ~/.gitconfig
+cp -u profile ~/.profile
 
 mkdir -p ~/.config/i3
 mkdir -p ~/.config/i3status
-cp config/i3/config ~/.config/i3/config
-cp config/i3status/config ~/.config/i3status/config
+cp -u config/i3/config ~/.config/i3/config
+cp -u config/i3status/config ~/.config/i3status/config
 
 mkdir -p ~/bin
-cp bin/* ~/bin/
-cp usr/share/* /usr/share/
+cp -u bin/* ~/bin/
+cp -u usr/share/* /usr/share/
