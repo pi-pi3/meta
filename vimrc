@@ -10,12 +10,6 @@ set iskeyword-=_
 syntax on
 filetype on
 colorscheme desert
-au BufRead,BufNewFile *.c set filetype=eq10 
-au BufRead,BufNewFile *.cl set filetype=eq10 
-au BufRead,BufNewFile *.h set filetype=eq10
-au BufRead,BufNewFile *.c colorscheme desert_eq10
-au BufRead,BufNewFile *.cl colorscheme desert_eq10
-au BufRead,BufNewFile *.h colorscheme desert_eq10
 
 let mapleader = "\\"
 let maplocalleader = "\\"

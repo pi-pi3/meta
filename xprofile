@@ -4,6 +4,11 @@ export SUDO_ASKPASS="$HOME/bin/askpass"
 
 setxkbmap -layout pl
 xmodmap ~/.Xmodmap
-xinput set-prop 'UC-Logic TABLET 1060N Pen Pen (0)' 'Coordinate Transformation Matrix' -0.6275 0 0.62 0 -1 1 0 0 1
+
 xsetroot -solid '#171824'
+xbacklight -set 75
+xset dpms 3600 7200 0
+xset s off
+~/bin/kbd-backlight -s 1
+
 dunst > /dev/null 2> /dev/null &
