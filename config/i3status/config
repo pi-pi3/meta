@@ -5,50 +5,38 @@ general {
     interval = 1
 }
 
-#order += "i3-notify"
+order += "taskwarrior"
 order += "disk /"
 #order += "run_watch DHCP"
-order += "ethernet enp0s31f6"
+order += "wifi"
+order += "netdata"
 #order += "cpu_temperature 0"
-order += "cpu_usage"
+order += "sysdata"
 #order += "load"
+order += "dpms"
+order += "battery all"
 order += "volume_status"
 order += "tztime local"
 
-#i3-notify {
-#}
-
-volume_status {
-    thresholds = [
-        (0, "#FF0000"),
-        (20, "degraded"),
-        (50, "bad"),
-    ]
-    on_click 1 = "exec pavucontrol"
+taskwarrior {
+    format = "{task} taskwarrior"
+    on_click 1 = "exec ptask"
 }
 
-ethernet eth0 {
-    # if you use %speed, i3status requires the cap_net_admin capability
-    format_up = "E: %ip (%speed)"
-    format_down = "E: down"
+disk "/" {
+    format = "/dev/sda3: %free/%total"
 }
 
 #run_watch DHCP {
 #    pidfile = "/var/run/dhcpcd-enp0s31f6.pid"
 #}
 
-tztime local {
-    format = "%Y-%m-%d %H:%M:%S"
-    timezone = "Europe/Berlin"
+wifi {
+    format_up = "W: {ssid} {signal_percent} {icon}"
 }
 
-#load {
-#    format = "L: %1min"
-#}
-
-cpu_usage {
-    format = "U: %usage"
-    on_click 1 = "exec gtop"
+netdata {
+    format = "↓{down}/↑{up}"
 }
 
 #cpu_temperature 0 {
@@ -56,6 +44,35 @@ cpu_usage {
 #    path = "/sys/devices/platform/coretemp.0/temp1_input"
 #}
 
-disk "/" {
-    format = "/dev/sda3: %free/%total"
+sysdata {
+    cache_timeout = 1
+    format = "CPU: {cpu_usage}% {cpu_temp}{temp_unit} MEM: {mem_used}/{mem_total}{mem_unit}"
+    on_click 1 = "exec gtop"
+}
+
+#load {
+#    format = "L: %1min"
+#}
+
+dpms {
+}
+
+battery all {
+    format = "%status %percentage% +%remaining"
+}
+
+volume_status {
+    thresholds = [
+        (0, "#FF0000"),
+        (20, "#FF7F00"),
+        (50, "#7FFF00"),
+        (80, "#00FF00"),
+        (101, "#00FF7F"),
+    ]
+    on_click 1 = "exec pavucontrol"
+}
+
+tztime local {
+    format = "%Y-%m-%d %H:%M:%S"
+    timezone = "Europe/Berlin"
 }
