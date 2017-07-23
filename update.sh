@@ -11,3 +11,8 @@ cp -u ~/.Xmodmap Xmodmap
 cp -u ~/.gitconfig gitconfig
 cp -u ~/.profile profile
 cp -u ~/.config/i3/config config/i3/config
+
+cp -u ~/bin/askpass bin
+cp -u ~/bin/gtop bin
+cp -u ~/bin/gvim bin
+cp -u ~/bin/lock bin

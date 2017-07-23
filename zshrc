@@ -19,5 +19,6 @@ alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto --group-directories-first -lh'
 alias clip='xclip -selection clipboard'
+alias bc='bc -l'
 
-export PS1='%n@ %B%m%b :%2~%(!.#.$) '
+export PS1='%n@ %B%m%b :%2~%(!.#.%) '

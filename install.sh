@@ -18,4 +18,4 @@ cp -u config/i3status/config ~/.config/i3status/config
 
 mkdir -p ~/bin
 cp -u bin/* ~/bin/
-cp -u usr/share/* /usr/share/
+sudo cp -u usr/share/* /usr/share/

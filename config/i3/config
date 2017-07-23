@@ -165,4 +165,4 @@ bindsym $mod+Control+Print exec "i3-scrot -s"
 
 bindsym $mod+Shift+F1 exec "sudo poweroff"
 bindsym $mod+Shift+F2 exec "sudo reboot"
-bindsym $mod+Shift+F3 exec "sudo pm-suspend"
+bindsym $mod+Shift+F3 exec "sh -c '/home/wls/bin/lock && sudo pm-suspend'"
