@@ -156,13 +156,16 @@ bar {
 }
 
 # Custom keybindings
+bindsym $mod+z exec "xinput set-prop 'UC-Logic TABLET 1060N Pen Pen (0)' 'Coordinate Transformation Matrix' -0.6275 0.0 0.62 0.0 -1.0 1.0 0.0 0.0 1.0"
+bindsym $mod+x exec "xinput set-prop 'UC-Logic TABLET 1060N Pen Pen (0)' 'Coordinate Transformation Matrix' -0.5515 0.0 1.023 0.0 -0.88 0.88 0.0 0.0 1.0"
+
 bindsym $mod+Print exec "i3-scrot -d"
 bindsym $mod+Shift+Print exec "i3-scrot -w"
 bindsym $mod+Control+Print exec "i3-scrot -s"
 
 bindsym $mod+Shift+F1 exec "sudo poweroff"
 bindsym $mod+Shift+F2 exec "sudo reboot"
-bindsym $mod+Shift+F3 exec "sudo pm-suspend"
+bindsym $mod+Shift+F3 exec "sh -c '/home/wls/bin/lock && sudo pm-suspend'"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume

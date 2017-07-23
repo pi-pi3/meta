@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+image=/tmp/i3lock.png
+scrot $image
+convert $image -blur 0x16 $image
+i3lock -i $image
+rm $image
