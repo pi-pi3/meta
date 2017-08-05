@@ -8,13 +8,13 @@ general {
 order += "taskwarrior"
 order += "disk /"
 #order += "run_watch DHCP"
-order += "wifi"
+#order += "wifi"
 order += "netdata"
 #order += "cpu_temperature 0"
 order += "sysdata"
 #order += "load"
 order += "dpms"
-order += "battery all"
+#order += "battery all"
 order += "volume_status"
 order += "tztime local"
 
@@ -31,9 +31,9 @@ disk "/" {
 #    pidfile = "/var/run/dhcpcd-enp0s31f6.pid"
 #}
 
-wifi {
-    format_up = "W: {ssid} {signal_percent} {icon}"
-}
+#wifi {
+#    format_up = "W: {ssid} {signal_percent} {icon}"
+#}
 
 netdata {
     format = "↓{down}/↑{up}"
@@ -57,9 +57,9 @@ sysdata {
 dpms {
 }
 
-battery all {
-    format = "%status %percentage% +%remaining"
-}
+#battery all {
+#    format = "%status %percentage% +%remaining"
+#}
 
 volume_status {
     thresholds = [

@@ -1,14 +1,16 @@
 #!/bin/zsh
 
 export SUDO_ASKPASS="$HOME/bin/askpass"
+export VISUAL=gvim
+export BROWSER=firefox-nightly
 
-setxkbmap -layout pl
+setxkbmap -layout pl_Custom -variant colemak
 xmodmap ~/.Xmodmap
 
 xsetroot -solid '#171824'
-xbacklight -set 75
+# xbacklight -set 75
 xset dpms 3600 7200 0
 xset s off
-~/bin/kbd-backlight -s 1
+# ~/bin/kbd-backlight -s 1
 
 dunst > /dev/null 2> /dev/null &

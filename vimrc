@@ -1,52 +1,148 @@
 
+execute pathogen#infect()
+
 syntax on
-filetype on
-colorscheme desert
+filetype plugin indent on
 
-set et
-set nu
-set ai
-set ci
+let g:jellybeans_use_term_italics = 1
+let g:jellybeans_overrides = {'background': {'ctermbg': 'none',
+                                           \ '256ctermbg': 'none',
+                                           \ 'guibg': 'none'}}
+colorscheme jellybeans
+
+" Options {{{
+set expandtab
+set number
+set autoindent
+set cindent
 set nowrap
-set hls
+set hlsearch
+set incsearch
 
-set ls=2
-set ts=3
-set sts=4
-set sw=4
-set nuw=4
+set laststatus=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set numberwidth=4
+set textwidth=80
 set t_Co=256
 set iskeyword-=_
+set cpoptions+=J
 
 set grepprg=grep\ -nH\ $*
+" }}}
 
+" Plugin global state {{{
 let g:tex_flavor = "latex"
 let g:powerline_pycmd = "py3"
+let g:snips_author = "Szymon Walter"
+let g:clam_winwidth = 60
+let g:gundo_preview_bottom = 1
+" }}}
 
+" <Leader> = <space>, <LocalLeader> = \ {{{
 let mapleader = " "
 let maplocalveader = "\\"
+" }}}
 
+" colemak {{{
+function Colemak()
+    noremap n h
+    noremap e j
+    noremap i k
+    noremap o l
+    
+    noremap <S-N> <S-H>
+    noremap <S-E> <S-J>
+    noremap <S-I> <S-K>
+    noremap <S-O> <S-L>
+    
+    noremap <C-N> <C-H>
+    noremap <C-E> <C-J>
+    noremap <C-I> <C-K>
+    noremap <C-O> <C-L>
+    
+    noremap h n
+    noremap j e
+    noremap k i
+    noremap l o
+    
+    noremap <S-H> <S-N>
+    noremap <S-J> <S-E>
+    noremap <S-K> <S-I>
+    noremap <S-L> <S-O>
+    
+    noremap <C-H> <C-N>
+    noremap <C-J> <C-E>
+    noremap <C-K> <C-I>
+    noremap <C-L> <C-O>
+
+    nnoremap <Leader>i :bp<CR>
+    nnoremap <Leader>e :bn<CR>
+
+    nnoremap <S-N> ^
+    nnoremap <S-O> $
+
+    cnoremap <C-N> <Left>
+    cnoremap <C-E> <Down>
+    cnoremap <C-I> <Up>
+    cnoremap <C-O> <Right>
+
+    onoremap kn( :<C-U>normal! f(vi(<CR>
+    onoremap kl( :<C-U>normal! F)vi(<CR>
+endfunction
+" }}}
+
+" Custom key mappings {{{
+" maps {{{
 noremap <F2> :retab<CR>
 noremap <F3> :set noet<CR>
 noremap <S-F3> :set et<CR>
 
 noremap <Leader>fs :NERDTreeToggle<CR>
 noremap <Leader>sh :sh<CR>
+" perl subst
 noremap <Leader>su :perldo s/
+" very magic subst
+noremap <Leader>vs :%s/\v
+"}}}
 
-nnoremap <Leader>/ :noh<CR>
-nnoremap <S-H> ^
-nnoremap <S-L> $
+" nmaps {{{
+" edit vimrc
 nnoremap <Leader>ev :split $MYVIMRC<CR>
+" source vimrc
 nnoremap <Leader>sv :source $MYVIMRC<CR>
-nnoremap <Leader>1 :set rnu!<CR>
-nnoremap <C-Z> <NOP>
-nnoremap <Leader>O O<ESC>
-nnoremap <CR> o<ESC>
-nnoremap <Leader>u viw<S-U>
-nnoremap <Leader>i viwu
+nnoremap <Leader>mk :make<CR>
+" exec a shell command
+nnoremap <Leader>: :Clam 
+" semicolon
+nnoremap <Leader>sc mmA;<ESC>`m
+" split
+nnoremap <Leader>sp :execute "leftabove split" bufname("#")<CR>
+" Upper
+nnoremap <Leader><S-U> viw<S-U>
+" trim whitespace
+nnoremap <Leader>tw :%s/\v\s+$//g<CR>
+" lookup word
+nnoremap <Leader>lw :OnlineThesaurusLookup<CR>
+" undo
+nnoremap <Leader>u :GundoToggle<CR>
+" rm current file
+nnoremap <Leader>rm :Clam rm <C-R>%<CR>:q<CR>:bd<CR>
+" re-open current file
+nnoremap <Leader>ro :bd<CR>:e <C-R>#<CR>
+" open last buffer
+nnoremap <Leader>bp :e <C-R>#<CR>
 nnoremap <Leader>k :bp<CR>
 nnoremap <Leader>j :bn<CR>
+nnoremap <Leader>/ :noh<CR>
+nnoremap <Leader>1 :set rnu!<CR>
+nnoremap / /\v
+nnoremap ? ?\v
+nnoremap <S-H> ^
+nnoremap <S-L> $
+nnoremap <C-Z> <NOP>
+nnoremap <CR> o<ESC>
 nnoremap <TAB> :ls<CR>:b
 nnoremap <S-TAB> :reg<CR>
 
@@ -54,79 +150,112 @@ nnoremap <Left> <NOP>
 nnoremap <Right> <NOP>
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
+" }}}
 
+" vmaps {{{
 vnoremap <Leader>q <ESC>`>a"<ESC>`<i"<ESC>`>l
 vnoremap <Left> <NOP>
 vnoremap <Right> <NOP>
 vnoremap <Up> <NOP>
 vnoremap <Down> <NOP>
+" }}}
 
+" imaps {{{
 inoremap <C-U> <ESC>viw<S-U>i
 inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
+" }}}
 
-onoremap p i(
+" cmaps {{{
+cnoremap <C-H> <Left>
+cnoremap <C-J> <Down>
+cnoremap <C-K> <Up>
+cnoremap <C-L> <Right>
+" }}}
+
+" some custom motions {{{
 onoremap in( :<C-U>normal! f(vi(<CR>
 onoremap il( :<C-U>normal! F)vi(<CR>
+" }}}
+" }}}
 
+" Insert mode abbrevs {{{
 iabbrev @@ walter.szymon.98@gmail.com
 iabbrev wls@ wls@driftinginyellow.tk
 iabbrev diytk driftinginyellow.tk
 iabbrev ssig Szymon Walter<CR>walter.szymon.98@gmail.com
+" }}}
 
-au BufRead *.rs :setlocal filetype=rust
+" autocmd {{{
+"autocmd BufRead *.rs :setlocal filetype=rust
+" }}}
 
-aug filetype_c 
-    au!
-    au FileType c nnoremap <LocalLeader>c 0i// <ESC>
-    au FileType c nnoremap <LocalLeader>x 03x
-    au FileType c iabbrev <buffer> iff if () {}
-    au FileType c iabbrev <buffer> elif else if () {}
-aug END
+" FileType configuration {{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim iabbrev <buffer> > >#
+    autocmd FileType vim iabbrev <buffer> >= >=#
+    autocmd FileType vim iabbrev <buffer> < <#
+    autocmd FileType vim iabbrev <buffer> <= <=#
+    autocmd FileType vim iabbrev <buffer> == ==#
+    autocmd FileType vim iabbrev <buffer> != !=#
+augroup END
 
-aug filetype_rust 
-    au!
-    au FileType rust nnoremap <LocalLeader>c 0i// <ESC>
-    au FileType rust nnoremap <LocalLeader>x 03x
-    au FileType rust iabbrev <buffer> iff if () {}
-    au FileType rust iabbrev <buffer> elif else if () {}
-aug END
+augroup filetype_c
+    autocmd!
+    autocmd FileType c nnoremap <LocalLeader>c 0i// <ESC>
+    autocmd FileType c nnoremap <LocalLeader>x 03x
+augroup END
 
-aug filetype_lua 
-    au!
-    au FileType lua nnoremap <LocalLeader>c 0i-- <ESC>
-    au FileType lua nnoremap <LocalLeader>x 03x
-    au FileType lua iabbrev <buffer> iff if then end
-    au FileType lua iabbrev <buffer> elif elseif end
-    au FileType lua iabbrev <buffer> fn() function()
-aug END
+augroup filetype_rust
+    autocmd!
+    autocmd FileType rust nnoremap <LocalLeader>c 0i// <ESC>
+    autocmd FileType rust nnoremap <LocalLeader>x 03x
+augroup END
 
-aug filetype_python 
-    au!
-    au FileType python nnoremap <LocalLeader>c 0i# <ESC>
-    au FileType python nnoremap <LocalLeader>x 02x
-aug END
+augroup filetype_lua
+    autocmd!
+    autocmd FileType lua nnoremap <LocalLeader>c 0i-- <ESC>
+    autocmd FileType lua nnoremap <LocalLeader>x 03x
+augroup END
 
-aug filetype_sh 
-    au!
-    au FileType sh nnoremap <LocalLeader>c 0i# <ESC>
-    au FileType sh nnoremap <LocalLeader>x 02x
-aug END
+augroup filetype_python
+    autocmd!
+    autocmd FileType python nnoremap <LocalLeader>c 0i# <ESC>
+    autocmd FileType python nnoremap <LocalLeader>x 02x
+augroup END
 
-aug filetype_html 
-    au!
-    au FileType html nnoremap <LocalLeader>c 0i<!--<ESC>A><ESC>
-    au FileType html nnoremap <LocalLeader>x 04x$x
-aug END
+augroup filetype_sh
+    autocmd!
+    autocmd FileType sh nnoremap <LocalLeader>c 0i# <ESC>
+    autocmd FileType sh nnoremap <LocalLeader>x 02x
+augroup END
 
-aug filetype_tex 
-    au!
-    au FileType tex nnoremap <LocalLeader>c 0i% <ESC>
-    au FileType tex nnoremap <LocalLeader>x 02x
-    au FileType tex setlocal spell spelllang=en_gb
-    au FileType tex onoremap p i{
-aug END
+augroup filetype_html
+    autocmd!
+    autocmd FileType html nnoremap <LocalLeader>c 0i<!--<ESC>A><ESC>
+    autocmd FileType html nnoremap <LocalLeader>x 04x$x
+augroup END
 
-noh
+augroup filetype_md
+    autocmd!
+    autocmd FileType md setlocal spell spelllang=en_gb
+augroup END
+
+augroup filetype_tex
+    autocmd!
+    autocmd FileType tex nnoremap <LocalLeader>c 0i% <ESC>
+    autocmd FileType tex nnoremap <LocalLeader>x 02x
+    " refresh vim-latex folds
+    autocmd FileType tex nnoremap <LocalLeader>rf <Plug>Tex_RefreshFolds
+    autocmd FileType tex setlocal spell spelllang=en_gb
+    autocmd FileType tex setlocal makeprg=make
+    autocmd FileType tex onoremap p i{
+augroup END
+" }}}
+
+call Colemak()
+nohlsearch
